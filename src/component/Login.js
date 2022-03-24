@@ -32,6 +32,10 @@ function Login() {
 
     return (
         <div>
+            <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
             {home ? (
                 <form onSubmit={handleLogin}>
                     <h3>LogIn</h3>
@@ -58,6 +62,9 @@ function Login() {
                     <button type="submit" className="btn btn-dark btn-lg btn-block">
                         Login
                     </button>
+                    <div className="forgot-password text-end">
+                        <Link to="/Forgot">Forgot password?</Link>
+                    </div>
 
                     <div className="auth-option text-center pt-2">No Account? <Link className="text-link" to="/register" >Sign up </Link></div>
 

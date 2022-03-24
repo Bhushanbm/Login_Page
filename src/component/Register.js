@@ -1,24 +1,56 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
-import Login from "./Login";
+import { Alert } from "react-bootstrap";
+import Form from './Form'
 
-function Registration() {
+function Register() {
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
-    const [profession, setProfession] = useState("");
+    const [email, setEmail] = useState("");
+    const [validate, setValidate] = useState({});
 
     const [flag, setFlag] = useState(false);
     const [login, setLogin] = useState(true);
 
 
+    const validateRegister = () => {
+        let isValid = true;
+
+        let validator = Form.validator({
+            name: {
+                value: name,
+                isRequired: true,
+            },
+            email: {
+                value: email,
+                isRequired: true,
+                isEmail: true
+            },
+            password: {
+                value: password,
+                isRequired: true,
+                minLength: 6
+            }
+        });
+
+        if (validator !== null) {
+            setValidate({
+                validate: validator.errors
+            })
+
+            isValid = false
+        }
+        return isValid;
+    }
+
+
 
     function handleFormSubmit(e) {
         e.preventDefault();
+        const validate = validateRegister();
 
-        if (!name || !email || !password || !phone ) {
+        if (validate) {
             setFlag(true);
         } else {
             setFlag(false);
@@ -56,21 +88,27 @@ function Registration() {
                             <label>Name</label>
                             <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${validate.validate && validate.validate.name ? 'is-invalid ' : ''}`}
                                 placeholder="Enter your name"
                                 name="name"
                                 onChange={(event) => setName(event.target.value)}
                             />
+                            <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.name) ? 'd-block' : 'd-none'}`} >
+                                {(validate.validate && validate.validate.name) ? validate.validate.name[0] : ''}
+                            </div>
                         </div>
 
                         <div className="form-group">
                             <label>Email</label>
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${validate.validate && validate.validate.email ? 'is-invalid ' : ''}`}
                                 placeholder="Enter email"
                                 onChange={(event) => setEmail(event.target.value)}
                             />
+                            <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.email) ? 'd-block' : 'd-none'}`} >
+                                {(validate.validate && validate.validate.email) ? validate.validate.email[0] : ''}
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Phone No.</label>
@@ -86,10 +124,13 @@ function Registration() {
                             <label>Password</label>
                             <input
                                 type="password"
-                                className="form-control"
+                                className={`form-control ${validate.validate && validate.validate.password ? 'is-invalid ' : ''}`}
                                 placeholder="Enter password"
                                 onChange={(event) => setPassword(event.target.value)}
                             />
+                            <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.password) ? 'd-block' : 'd-none'}`} >
+                                {(validate.validate && validate.validate.password) ? validate.validate.password[0] : ''}
+                            </div>
                         </div>
 
                         
@@ -120,4 +161,4 @@ function Registration() {
     );
 }
 
-export default Registration;
+export default Register;
