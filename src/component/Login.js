@@ -14,9 +14,9 @@ function Login() {
     function handleLogin(e) {
         e.preventDefault();
         let pass = localStorage
-            .getItem("sanskarPassword")
+            .getItem("Password")
             .replace(/"/g, "");
-        let mail = localStorage.getItem("sanskarEmail").replace(/"/g, "");
+        let mail = localStorage.getItem("Email").replace(/"/g, "");
 
 
         if (!emaillog || !passwordlog) {
@@ -62,11 +62,14 @@ function Login() {
                     <button type="submit" className="btn btn-dark btn-lg btn-block">
                         Login
                     </button>
+                    <br />
+                    <br/>
                     <div className="forgot-password text-end">
                         <Link to="/Forgot">Forgot password?</Link>
                     </div>
+                    <br/>
 
-                    <div className="auth-option text-center pt-2">No Account? <Link className="text-link" to="/register" >Sign up </Link></div>
+                    <div className="auth-option text-center pt-2">If you have No Account! <Link className="text-link" to="/register" >Sign up </Link></div>
 
                     {flag && (
                         <Alert color="primary" variant="warning">

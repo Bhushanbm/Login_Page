@@ -80,7 +80,7 @@ const Forgot = () => {
                                     <div className="auth-option text-center pt-2"><Link className="text-link" to="/login" >Back to Login</Link></div>
                                 </div>
                             </form>
-
+                            <br/>
                             <hr />
                             <div className="auth-option text-center pt-2"><Link className="text-link" to="/login" >Back to Login</Link></div>
                         </div>

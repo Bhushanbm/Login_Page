@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import Login from "./Login";
 import Form from './Form'
 
 function Register() {
@@ -30,7 +31,7 @@ function Register() {
             password: {
                 value: password,
                 isRequired: true,
-                minLength: 6
+                minLength: 8
             }
         });
 
@@ -50,17 +51,12 @@ function Register() {
         e.preventDefault();
         const validate = validateRegister();
 
-        if (validate) {
+        if (!name || !email || !password ) {
             setFlag(true);
         } else {
             setFlag(false);
-            localStorage.setItem("sanskarEmail", JSON.stringify(email));
-            localStorage.setItem(
-                "sanskarPassword",
-                JSON.stringify(password)
-            );
-            console.log("Saved in Local Storage");
-
+            localStorage.setItem("Email", JSON.stringify(email));
+            localStorage.setItem("Password", JSON.stringify(password) );
             setLogin(!login);
         }
     }
@@ -68,10 +64,6 @@ function Register() {
     function handleClick() {
         setLogin(!login);
     }
-
-
-
-
     return (
         <>
             <div class="background">

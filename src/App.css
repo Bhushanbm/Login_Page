@@ -12,6 +12,9 @@ label {
     font-weight: 500;
 }
 
+.Home{
+    text-align:center;
+}
 input {
     display: block;
     height: 50px;
