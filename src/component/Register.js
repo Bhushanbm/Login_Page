@@ -132,10 +132,6 @@ function Register() {
                         </button>
                         <br />
                         <br/>
-                        <p onClick={handleClick} className="forgot-password text-right">
-                            Already registered{" "}log in?
-
-                        </p>
 
                         <div className="auth-option text-center pt-2">Have an account? <Link className="text-link" to="/login" >Sign in</Link></div>
                         {flag && (
